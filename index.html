@@ -26,6 +26,32 @@
       overflow: hidden;
     }
 
+    /* 行動裝置響應式設計 */
+    @media (max-width: 480px) {
+      body {
+        background: #ffffff;
+        align-items: stretch;
+      }
+      
+      .chat-container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        max-width: none;
+      }
+    }
+
+    /* 平板和大螢幕手機 */
+    @media (max-width: 768px) and (min-width: 481px) {
+      .chat-container {
+        width: 95vw;
+        max-width: 450px;
+        height: 95vh;
+        border-radius: 15px;
+      }
+    }
+
     /* 頂部標題區 */
     .chat-header {
       padding: 14px 16px;
@@ -37,6 +63,14 @@
       position: sticky;
       top: 0;
       z-index: 100;
+    }
+
+    /* 行動裝置頂部調整 */
+    @media (max-width: 480px) {
+      .chat-header {
+        padding: 20px 16px 14px 16px;
+        padding-top: env(safe-area-inset-top, 20px);
+      }
     }
 
     /* 可滑動訊息區 */
@@ -72,6 +106,14 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
     }
 
+    /* 行動裝置文字大小調整 */
+    @media (max-width: 480px) {
+      .bubble {
+        font-size: 16px;
+        max-width: 80%;
+      }
+    }
+
     .chat-message.user {
       justify-content: flex-end;
     }
@@ -95,6 +137,13 @@
       border-top: 1px solid #e0e0e0;
       box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
       transition: all 0.4s ease;
+    }
+
+    /* 行動裝置底部安全區域 */
+    @media (max-width: 480px) {
+      .input-bar {
+        padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)) 16px;
+      }
     }
 
     .input-bar input {
@@ -135,12 +184,27 @@
       cursor: pointer;
       transition: background 0.3s;
     }
+    
     .quick-btn:hover {
-      background-color: #ffe7f282
+      background-color: #ffe7f282;
     }
 
+    /* 行動裝置快速選項調整 */
+    @media (max-width: 480px) {
+      .quick-btn {
+        font-size: 16px;
+        padding: 10px 16px;
+        touch-action: manipulation;
+      }
+    }
 
-
+    #quickOptions {
+      padding: 12px 16px; 
+      display: flex; 
+      gap: 10px; 
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     .blurred-image {
       position: relative;
@@ -155,6 +219,13 @@
       filter: blur(6px);
       transition: filter 0.4s ease, transform 0.3s ease;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 行動裝置圖片調整 */
+    @media (max-width: 480px) {
+      .blurred-image img {
+        width: min(280px, 70vw);
+      }
     }
 
     .blurred-image:hover img {
@@ -225,11 +296,10 @@
       </div>
     </div>
 
-    <div id="quickOptions" style="padding: 12px 16px; display: flex; gap: 10px; flex-wrap: wrap;justify-content: center;">
+    <div id="quickOptions">
       <button onclick="handleQuickOption('我想聽聽更多...')" class="quick-btn">我想聽聽更多...</button>
       <button onclick="handleQuickOption('你說的是什麼？')" class="quick-btn">你說的是什麼？</button>
     </div>
-
 
     <div class="input-bar">
       <input type="text" id="userInput" placeholder="Aa…" />
@@ -256,7 +326,6 @@
 
     input.value = '';
     document.querySelector(".input-bar").classList.add("hidden");
-
 
     // 如果圖片出現過，使用者輸入後即跳轉
     if (hasImageShown) {
@@ -334,7 +403,7 @@
       chat.appendChild(wrapper);
       scrollToBottom();
 
-      // 啟動 5 秒自動跳轉
+      // 啟動 4 秒自動跳轉
       hasImageShown = true;
       redirectTimeout = setTimeout(() => redirectToApp(), 4000);
 
@@ -363,13 +432,12 @@
   }
 
   function scrollToBottom() {
-  const chat = document.getElementById('chat');
-  chat.scrollTop = chat.scrollHeight;
-  setTimeout(() => {
+    const chat = document.getElementById('chat');
     chat.scrollTop = chat.scrollHeight;
-  }, 100); // 小延遲保底
-}
-
+    setTimeout(() => {
+      chat.scrollTop = chat.scrollHeight;
+    }, 100); // 小延遲保底
+  }
 
   function redirectToApp() {
     window.location.href = "https://apps.apple.com/tw/app/sugar-%E4%BD%A0%E7%9A%84%E6%AD%A3%E7%89%88%E6%BC%AB%E7%95%ABai%E8%A7%92%E8%89%B2/id6744877922";
@@ -382,8 +450,6 @@
   });
   observer.observe(chat, { childList: true });
 
-</script>
-
-
+  </script>
 </body>
 </html>
