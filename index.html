@@ -57,7 +57,7 @@
       padding: 14px 16px;
       font-weight: bold;
       font-size: 18px;
-      background-color: #f9f9f9;
+      background: linear-gradient(to right, rgba(212, 253, 255, 0.62), rgba(255, 218, 229, 0.64));
       border-bottom: 1px solid #e0e0e0;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
       position: sticky;
@@ -287,18 +287,18 @@
 </head>
 <body>
   <div class="chat-container">
-    <div class="chat-header">💬 Sugar 甜聊</div>
+    <div class="chat-header">💬 總裁前夫</div>
 
     <div class="chat-messages" id="chat">
       <div class="chat-message">
         <img src="總監大頭.jpg" class="avatar" />
-        <div class="bubble">嗨，我一直在等你回來。</div>
+        <div class="bubble">是你啊……我以為，你再也不會聯絡我了。</div>
       </div>
     </div>
 
     <div id="quickOptions">
-      <button onclick="handleQuickOption('我想聽聽更多...')" class="quick-btn">我想聽聽更多...</button>
-      <button onclick="handleQuickOption('你說的是什麼？')" class="quick-btn">你說的是什麼？</button>
+      <button onclick="handleQuickOption('你一直在等我嗎？')" class="quick-btn">你一直在等我嗎？</button>
+      <button onclick="handleQuickOption('什麼？')" class="quick-btn">什麼？</button>
     </div>
 
     <div class="input-bar">
@@ -365,9 +365,9 @@
   function showAutoReply() {
     const chat = document.getElementById('chat');
 
-    const reply1 = createMessage("你知道嗎…我一直幻想著你會出現，就像現在一樣。");
-    const reply2 = createMessage("有些話，真的不能在這裡說出口…太容易讓人心跳失控。");
-    const reply3 = createMessage("但如果你敢點進來，我可以讓你看看我真正的樣子…");
+    const reply1 = createMessage("當年你說分開是為了彼此更好，可我從沒覺得有哪一刻比「我們在一起」更好");
+    const reply2 = createMessage("我有太多話沒說出口，也許你從沒想聽……我從沒放下過你");
+    const reply3 = createMessage("讓我們再見一次，就當給彼此一個交代吧");
 
     const delay = (ms, fn) => setTimeout(fn, ms);
 
@@ -390,7 +390,7 @@
       };
       blurredImage.innerHTML = `
         <img src="千雲_特殊.jpg" />
-        <div class="overlay-text">準備解鎖🥵</div>
+        <div class="overlay-text">解鎖圖片🥵</div>
       `;
 
       const wrapper = document.createElement('div');
@@ -405,7 +405,7 @@
 
       // 啟動 4 秒自動跳轉
       hasImageShown = true;
-      redirectTimeout = setTimeout(() => redirectToApp(), 4000);
+      redirectTimeout = setTimeout(() => redirectToApp(), 5000);
 
       // 解鎖輸入
       const input = document.getElementById('userInput');
